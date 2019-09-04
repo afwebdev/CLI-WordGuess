@@ -1,10 +1,9 @@
 class Word {
-	constructor() {}
+	constructor(word) {
+		this.word = word;
+	}
 }
 
-Word.prototype.storeWord = word => {
-	this.word = word;
-	console.log("hey", word);
-};
+Word.prototype.storeWord = () => {};
 
 module.exports = Word;
