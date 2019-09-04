@@ -17,7 +17,9 @@ const askForLetter = () => {
 			}
 		])
 		.then(answers => {
+			word.initWord();
 			word.checkLetter(answers.guess);
+			//display prompt.
 			askForLetter();
 		});
 };

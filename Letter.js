@@ -4,4 +4,6 @@ class Letter {
 	}
 }
 
-Letter.prototype.checkLetter = letter => {};
+Letter.prototype.checkLetter = (word, letter) => {};
+
+module.exports = Letter;
