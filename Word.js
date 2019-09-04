@@ -4,6 +4,4 @@ class Word {
 	}
 }
 
-Word.prototype.storeWord = () => {};
-
 module.exports = Word;
