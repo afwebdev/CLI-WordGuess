@@ -5,7 +5,11 @@ class Word {
 		this.word = word;
 	}
 	initWord() {
-		let hiddenWord = this.word.split("").map(letter => "_");
+		let hiddenWord = this.word
+			.split("")
+			.map(letter => "_")
+			.join("");
+		console.log(hiddenWord);
 		return hiddenWord;
 	}
 	checkLetter(letter) {
