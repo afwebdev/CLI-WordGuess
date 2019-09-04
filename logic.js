@@ -7,7 +7,9 @@ let Word = require("./Word");
 let word = new Word(wordList[`${Math.floor(Math.random() * 50000) + 50000}`]);
 console.log(word.word); //testing init of new word object
 
-const askForLetter = () => {
+const promptForLetter = () => {
+	//inquirer takes an ARRAY of QUESTION OBJECTS in the below format
+	//https://www.npmjs.com/package/inquirer
 	inquirer
 		.prompt([
 			{
@@ -17,11 +19,19 @@ const askForLetter = () => {
 			}
 		])
 		.then(answers => {
-			word.initWord();
-			word.checkLetter(answers.guess);
-			//display prompt.
-			askForLetter();
+			//Send work out to a function, somewhere, instead.
+			let answer = answers.guess;
+			//if answer is true(counting blanks)
+			if (answer.length === 1) {
+				console.log("Character entered: 1");
+			} else if (answer.length < 1) {
+				console.log("Please Try Again - Guess atleast ONE letter.");
+			} else {
+				console.log("Please Try Again - Guess ONLY ONE letter");
+			}
+			//Now re-display prompt(move me after)
+			promptForLetter();
 		});
 };
 
-askForLetter();
+promptForLetter();
