@@ -5,8 +5,8 @@ class Word {
 		this.word = word;
 	}
 	initWord() {
-		let hiddenWord = this.word.split("");
-		console.log(hiddenWord);
+		let hiddenWord = this.word.split("").map(letter => "_");
+		return hiddenWord;
 	}
 	checkLetter(letter) {
 		return newLetter.checkLetter(this.word, letter);
