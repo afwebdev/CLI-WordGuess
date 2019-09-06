@@ -3,8 +3,8 @@ let inquirer = require("inquirer");
 let wordList = require("word-list-json");
 let Word = require("./Word");
 
-// let word = new Word(wordList[`${Math.floor(Math.random() * 10000) + 50000}`]);
-let word = new Word("andrew");
+let word = new Word(wordList[Math.floor(Math.random() * wordList.lengths[7]) + wordList.lengths[5]]);
+// let word = new Word("andrew");
 let arrayWord = [];
 
 const makeWord = cbPrompt => {
@@ -17,8 +17,8 @@ const makeWord = cbPrompt => {
 const newGame = () => {
 	arrayWord = [];
 	console.clear();
-	// word = new Word(wordList[`${Math.floor(Math.random() * 10000) + 50000}`]);
-	word = new Word("andrew");
+	word = new Word(wordList[Math.floor(Math.random() * wordList.lengths[7]) + wordList.lengths[5]]);
+	// word = new Word("andrew");
 	word.makeWord();
 	promptForLetter();
 };
@@ -50,7 +50,7 @@ const promptForLetter = () => {
 					type: "list",
 					name: "playAgain",
 					choices: ["Yes", "No"],
-					message: "Game Over, Play again?"
+					message: `Game Over, the word was: ${word.word}, play again?`
 				}
 			])
 			.then(answer => {
