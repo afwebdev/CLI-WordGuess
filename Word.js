@@ -11,29 +11,40 @@
 
 let Letter = require("./Letter");
 let wordArray = [];
+let guesses = [];
 
 const Word = function(word) {
 	this.word = word;
+	this.guessLeft = this.word.length + 5;
 
 	this.makeWord = () => {
+		//clean old arrays,
+		wordArray = [];
+		guesses = [];
 		word.split("").forEach(letter => {
 			wordArray.push(new Letter(letter));
 		});
-		return wordArray;
 	};
 
 	this.displayWord = () => {
 		let word = wordArray.map(letter => {
 			return letter.returnLetter();
 		});
-		console.clear();
 		console.log("\n" + word.join(" ") + "\n");
 	};
 
 	this.guessLetter = letter => {
-		wordArray.forEach(letterInWord => {
-			letterInWord.checkLetter(letter);
-		});
+		if (guesses.includes(letter)) {
+			console.log("guessed already");
+			return;
+		} else {
+			guesses.push(letter);
+			wordArray.forEach(letterInWord => {
+				letterInWord.checkLetter(letter);
+			});
+			this.guessLeft--;
+			console.log("Guesses Left: " + this.guessLeft);
+		}
 	};
 };
 
