@@ -3,7 +3,9 @@ let inquirer = require("inquirer");
 let wordList = require("word-list-json");
 let Word = require("./Word");
 
-let word = new Word(wordList[`${Math.floor(Math.random() * 10000) + 50000}`]);
+// let word = new Word(wordList[`${Math.floor(Math.random() * 10000) + 50000}`]);
+let word = new Word("andrew");
+let arrayWord = [];
 
 const makeWord = cbPrompt => {
 	//Make Our Word Array OBJ.
@@ -13,8 +15,10 @@ const makeWord = cbPrompt => {
 };
 
 const newGame = () => {
+	arrayWord = [];
 	console.clear();
-	word = new Word(wordList[`${Math.floor(Math.random() * 10000) + 50000}`]);
+	// word = new Word(wordList[`${Math.floor(Math.random() * 10000) + 50000}`]);
+	word = new Word("andrew");
 	word.makeWord();
 	promptForLetter();
 };
@@ -52,7 +56,8 @@ const promptForLetter = () => {
 
 				if (answer.length === 1) {
 					console.clear();
-					word.guessLetter(answer);
+					if (word.guessLetter(answer)) {
+					}
 					console.log("Character entered: 1");
 				} else if (answer.length < 1) {
 					console.log("Please Try Again - Guess atleast ONE letter.");
@@ -65,4 +70,4 @@ const promptForLetter = () => {
 };
 
 console.clear();
-makeWord(promptForLetter);
+arrayWord = makeWord(promptForLetter);

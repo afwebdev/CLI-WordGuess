@@ -35,7 +35,7 @@ const Word = function(word) {
 
 	this.guessLetter = letter => {
 		if (guesses.includes(letter)) {
-			console.log("guessed already");
+			console.log("Already Guessed That!");
 			return;
 		} else {
 			guesses.push(letter);
@@ -44,8 +44,14 @@ const Word = function(word) {
 			});
 			this.guessLeft--;
 			console.log("Guesses Left: " + this.guessLeft);
+			if (wordArray.every(word => word.guessed)) {
+				return true;
+			}
 		}
+		return false;
 	};
+
+	//end
 };
 
 module.exports = Word;
