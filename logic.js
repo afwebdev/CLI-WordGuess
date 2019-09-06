@@ -23,6 +23,22 @@ const newGame = () => {
 	promptForLetter();
 };
 
+const winner = () => {
+	// console.clear();
+	inquirer
+		.prompt([
+			{
+				type: "list",
+				name: "playAgain",
+				choices: ["Yes", "No"],
+				message: `Winner! Winner! The Word was: ${word.word}. Would you like to play again?`
+			}
+		])
+		.then(answer => {
+			answer.playAgain === "Yes" ? newGame() : false;
+		});
+};
+
 const promptForLetter = () => {
 	word.displayWord();
 	//inquirer takes an ARRAY of QUESTION OBJECTS in the below format
@@ -57,15 +73,18 @@ const promptForLetter = () => {
 				if (answer.length === 1) {
 					console.clear();
 					if (word.guessLetter(answer)) {
-					}
-					console.log("Character entered: 1");
+						winner();
+					} else promptForLetter();
 				} else if (answer.length < 1) {
+					console.clear();
 					console.log("Please Try Again - Guess atleast ONE letter.");
+					promptForLetter();
 				} else {
+					console.clear();
 					console.log("Please Try Again - Guess ONLY ONE letter");
+					promptForLetter();
 				}
 				//Now re-display prompt(move me after)
-				promptForLetter();
 			});
 };
 
